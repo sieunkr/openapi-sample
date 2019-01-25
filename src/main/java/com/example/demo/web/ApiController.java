@@ -1,7 +1,9 @@
 package com.example.demo.web;
 
+import com.example.demo.core.BlogUseCase;
 import com.example.demo.core.BookUseCase;
 import com.example.demo.core.dto.ResponseKakaoBook;
+import com.example.demo.core.dto.ResponseNaverBlog;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,9 +18,11 @@ import java.util.List;
 public class ApiController {
 
     private final BookUseCase bookUseCase;
+    private final BlogUseCase blogUseCase;
 
-    public ApiController(BookUseCase bookUseCase) {
+    public ApiController(BookUseCase bookUseCase, BlogUseCase blogUseCase) {
         this.bookUseCase = bookUseCase;
+        this.blogUseCase = blogUseCase;
     }
 
     @GetMapping("book")
@@ -30,9 +34,9 @@ public class ApiController {
     }
 
     @GetMapping("blog")
-    public Flux<?> findBlogByQuery(){
+    public Mono<ResponseNaverBlog> findBlogByQuery(){
 
-        return null;
+        return blogUseCase.findBlogByQuery("스프링부트");
     }
 
 

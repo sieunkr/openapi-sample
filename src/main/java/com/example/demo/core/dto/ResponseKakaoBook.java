@@ -2,10 +2,11 @@ package com.example.demo.core.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class ResponseKakaoBook {
+public class ResponseKakaoBook implements Serializable {
 
     private ResponseKakaoBook.Meta meta;
     private List<document> documents;
